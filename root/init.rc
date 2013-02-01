@@ -281,6 +281,8 @@ on post-fs
     chmod 0664 /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
     chown root system /sys/devices/virtual/bdi/179:0/read_ahead_kb
     chmod 0664 /sys/devices/virtual/bdi/179:0/read_ahead_kb
+    chown system system /sys/block/mmcblk0/queue/scheduler
+    chmod 0664 /sys/block/mmcblk0/queue/scheduler
     chown root system /sys/kernel/mm/ksm/run
     chmod 0664 /sys/kernel/mm/ksm/run
     chown root system /sys/kernel/mm/ksm/sleep_millisecs
@@ -289,6 +291,8 @@ on post-fs
     chmod 0664 /sys/kernel/mm/ksm/pages_to_scan
     chown root system /sys/module/lowmemorykiller/parameters/minfree
     chmod 0664 /sys/module/lowmemorykiller/parameters/minfree
+    chown root system /sys/module/lowmemorykiller/parameters/adj
+    chmod 0664 /sys/module/lowmemorykiller/parameters/adj
 
 # taken from huawei init.rc, do we need customization ?
 on cust
@@ -369,7 +373,7 @@ on boot
     write /proc/sys/vm/overcommit_memory 1
     write /proc/sys/vm/min_free_order_shift 4
     write /sys/module/lowmemorykiller/parameters/fudgeswap 128
-    write /sys/module/lowmemorykiller/parameters/minfree 2048,3072,4096,6144,7168,8192
+    write /sys/module/lowmemorykiller/parameters/minfree 2560,4096,6144,11264,11776,14336
 
     # Set init its forked children's oom_adj.
     write /proc/1/oom_adj -16
@@ -579,7 +583,6 @@ service opush /system/bin/sdptool add --channel=12 OPUSH
     disabled
     oneshot
 
-
 service pbap /system/bin/sdptool add --channel=19 PBAP
     user bluetooth
     group bluetooth net_bt_admin
@@ -594,7 +597,6 @@ service map /system/bin/sdptool add --channel=16 MAS
 
 service installd /system/bin/installd
     socket installd stream 600 system system
-
 
 service racoon /system/bin/racoon
     socket racoon stream 600 system system

@@ -106,12 +106,7 @@ PRODUCT_COPY_FILES += \
     device/$(MANUFACTURER)/$(DEVICE)/prebuild/zipalign:system/bin/zipalign \
     device/$(MANUFACTURER)/$(DEVICE)/prebuild/be_photo:system/etc/be_photo \
     device/$(MANUFACTURER)/$(DEVICE)/prebuild/be_movie:system/etc/be_movie \
-    device/$(MANUFACTURER)/$(DEVICE)/shutdownanimation.zip:system/media/shutdownanimation.zip \
-    device/$(MANUFACTURER)/$(DEVICE)/app/ics.apk:system/app/ics.apk
-
-## application
-PRODUCT_COPY_FILES += \
-    device/$(MANUFACTURER)/$(DEVICE)/app/BMKG.apk:system/app/BMKG.apk
+    device/$(MANUFACTURER)/$(DEVICE)/shutdownanimation.zip:system/media/shutdownanimation.zip
 
 # Install the features available on this device.
 PRODUCT_COPY_FILES += \
